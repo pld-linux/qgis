@@ -25,6 +25,13 @@ Linuksa/uniksów. QGIS bêdzie oferowa³ obs³ugê formatów wektorowych i
 rastrowych. Aktualnie QGIS obs³uguje pliki kszta³tów oraz warstwy
 PostgreSQL/PostGIS.
 
+%package devel
+Summary:	headers for QGIS
+Group:		Development/Libraries
+
+%description devel
+headers for QGIS
+
 %prep
 %setup -q
 
@@ -47,5 +54,114 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/%{name}
-%{_prefix}/lib/%{name}
+%{_libdir}/%{name}
 %{_datadir}/%{name}
+%attr(755,root,root) %{_bindir}/gpsimporter
+%attr(755,root,root) %{_bindir}/gridmaker
+%attr(755,root,root) %{_libdir}/libqgis.so.0.0.0
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/qgis-config
+%{_includedir}/qgis/qgis.h
+%{_includedir}/qgis/qgisapp.h
+%{_includedir}/qgis/qgisappbase.ui.h
+%{_includedir}/qgis/qgisappbase.uic.h
+%{_includedir}/qgis/qgisiface.h
+%{_includedir}/qgis/qgisinterface.h
+%{_includedir}/qgis/qgisplugin.h
+%{_includedir}/qgis/qgsabout.ui.h
+%{_includedir}/qgis/qgsabout.uic.h
+%{_includedir}/qgis/qgsattributetable.h
+%{_includedir}/qgis/qgsattributetablebase.ui.h
+%{_includedir}/qgis/qgsattributetablebase.uic.h
+%{_includedir}/qgis/qgsattributetabledisplay.h
+%{_includedir}/qgis/qgsconfig.h
+%{_includedir}/qgis/qgscontcoldialog.h
+%{_includedir}/qgis/qgscontcoldialogbase.uic.h
+%{_includedir}/qgis/qgscontinuouscolrenderer.h
+%{_includedir}/qgis/qgscoordinatetransform.h
+%{_includedir}/qgis/qgscustomsymbol.h
+%{_includedir}/qgis/qgsdatabaselayer.h
+%{_includedir}/qgis/qgsdataprovider.h
+%{_includedir}/qgis/qgsdatasource.h
+%{_includedir}/qgis/qgsdbsourceselect.h
+%{_includedir}/qgis/qgsdlgvectorlayerproperties.h
+%{_includedir}/qgis/qgsdlgvectorlayerpropertiesbase.uic.h
+%{_includedir}/qgis/qgsfeature.h
+%{_includedir}/qgis/qgsfeatureattribute.h
+%{_includedir}/qgis/qgsfield.h
+%{_includedir}/qgis/qgsgraduatedmarenderer.h
+%{_includedir}/qgis/qgsgraduatedsymrenderer.h
+%{_includedir}/qgis/qgsgramadialog.h
+%{_includedir}/qgis/qgsgramadialogbase.uic.h
+%{_includedir}/qgis/qgsgramaextensionwidget.h
+%{_includedir}/qgis/qgsgrasydialog.h
+%{_includedir}/qgis/qgsgrasydialogbase.uic.h
+%{_includedir}/qgis/qgsgrasyextensionwidget.h
+%{_includedir}/qgis/qgshelpviewer.h
+%{_includedir}/qgis/qgshelpviewerbase.ui.h
+%{_includedir}/qgis/qgshelpviewerbase.uic.h
+%{_includedir}/qgis/qgsidentifyresults.h
+%{_includedir}/qgis/qgsidentifyresultsbase.uic.h
+%{_includedir}/qgis/qgslegend.h
+%{_includedir}/qgis/qgslegenditem.h
+%{_includedir}/qgis/qgslegenditembase.uic.h
+%{_includedir}/qgis/qgslinestyledialog.h
+%{_includedir}/qgis/qgslinestyledialogbase.uic.h
+%{_includedir}/qgis/qgslinesymbol.h
+%{_includedir}/qgis/qgsmapcanvas.h
+%{_includedir}/qgis/qgsmaplayer.h
+%{_includedir}/qgis/qgsmaplayerinterface.h
+%{_includedir}/qgis/qgsmapserverexport.h
+%{_includedir}/qgis/qgsmapserverexportbase.ui.h
+%{_includedir}/qgis/qgsmapserverexportbase.uic.h
+%{_includedir}/qgis/qgsmarkerdialog.h
+%{_includedir}/qgis/qgsmarkerdialogbase.uic.h
+%{_includedir}/qgis/qgsmarkersymbol.h
+%{_includedir}/qgis/qgsmessageviewer.ui.h
+%{_includedir}/qgis/qgsmessageviewer.uic.h
+%{_includedir}/qgis/qgsnewconnection.h
+%{_includedir}/qgis/qgsoptionsbase.ui.h
+%{_includedir}/qgis/qgsoptionsbase.uic.h
+%{_includedir}/qgis/qgspatterndialog.h
+%{_includedir}/qgis/qgspatterndialogbase.uic.h
+%{_includedir}/qgis/qgspluginitem.h
+%{_includedir}/qgis/qgspluginmanager.h
+%{_includedir}/qgis/qgspluginmanagerbase.uic.h
+%{_includedir}/qgis/qgspluginmetadata.h
+%{_includedir}/qgis/qgspluginregistry.h
+%{_includedir}/qgis/qgspoint.h
+%{_includedir}/qgis/qgspolygonsymbol.h
+%{_includedir}/qgis/qgsprojectio.h
+%{_includedir}/qgis/qgsprojectproperties.h
+%{_includedir}/qgis/qgsprojectpropertiesbase.ui.h
+%{_includedir}/qgis/qgsprojectpropertiesbase.uic.h
+%{_includedir}/qgis/qgsprovidermetadata.h
+%{_includedir}/qgis/qgsproviderregistry.h
+%{_includedir}/qgis/qgsrangerenderitem.h
+%{_includedir}/qgis/qgsrasterlayer.h
+%{_includedir}/qgis/qgsrasterlayerproperties.h
+%{_includedir}/qgis/qgsrasterlayerpropertiesbase.ui.h
+%{_includedir}/qgis/qgsrasterlayerpropertiesbase.uic.h
+%{_includedir}/qgis/qgsrect.h
+%{_includedir}/qgis/qgsrenderer.h
+%{_includedir}/qgis/qgsrenderitem.h
+%{_includedir}/qgis/qgsscalecalculator.h
+%{_includedir}/qgis/qgssimadialog.h
+%{_includedir}/qgis/qgssimadialogbase.uic.h
+%{_includedir}/qgis/qgssimarenderer.h
+%{_includedir}/qgis/qgssinglesymrenderer.h
+%{_includedir}/qgis/qgssisydialog.h
+%{_includedir}/qgis/qgssisydialogbase.uic.h
+%{_includedir}/qgis/qgssymbol.h
+%{_includedir}/qgis/qgssymbologyutils.h
+%{_includedir}/qgis/qgsvectorlayer.h
+%{_includedir}/qgis/qgsvectorlayerproperties.h
+%{_includedir}/qgis/qgsvectorlayerpropertiesbase.uic.h
+%{_includedir}/qgis/splashscreen.h
+%{_prefix}/lib/libqgis.a
+%{_prefix}/lib/libqgis.la
+%{_aclocaldir}/qgis.m4
+
+%doc AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README TODO
