@@ -6,7 +6,7 @@ Release:	0.1
 License:	GPL
 Group:		Applications/Engineering
 Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
-# Source0-md5:	f1f12a5991a9bdf2389cc8892c7801cd
+# Source0-md5:	f6ae20c4ae638f321bb3863783b6be3b
 Patch0:		%{name}-paralelbuild.patch
 URL:		http://qgis.sourceforge.net/
 BuildRequires:	gdal-devel
@@ -56,7 +56,6 @@ Statyczna biblioteka QGIS.
 %patch0 -p1
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
