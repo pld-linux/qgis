@@ -1,5 +1,5 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
-Summary(pl):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/uniksów
+Summary(pl):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
 Name:		qgis
 Version:	0.3.0
 Release:	0.1
@@ -21,7 +21,7 @@ PostgreSQL/PostGIS layers.
 %description -l pl
 Quantum GIS (QGIS) jest projektowany by byæ systemem informacji
 geograficznych (GIS - Geographic Information System) stworzonym dla
-Linuksa/uniksów. QGIS bêdzie oferowa³ obs³ugê formatów wektorowych i
+Linuksa/Uniksów. QGIS bêdzie oferowa³ obs³ugê formatów wektorowych i
 rastrowych. Aktualnie QGIS obs³uguje pliki kszta³tów oraz warstwy
 PostgreSQL/PostGIS.
 
