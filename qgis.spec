@@ -26,11 +26,28 @@ rastrowych. Aktualnie QGIS obs³uguje pliki kszta³tów oraz warstwy
 PostgreSQL/PostGIS.
 
 %package devel
-Summary:	headers for QGIS
+Summary:	Header files for QGIS
+Summary(pl):	Pliki nag³ówkowe QGIS
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
-headers for QGIS
+Header files for QGIS.
+
+%description devel -l pl
+Pliki nag³ówkowe QGIS.
+
+%package static
+Summary:	Static QGIS library
+Summary(pl):	Statyczna biblioteka QGIS
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static QGIS library.
+
+%description static -l pl
+Statyczna biblioteka QGIS.
 
 %prep
 %setup -q
@@ -50,19 +67,25 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog README TODO
-%attr(755,root,root) %{_bindir}/%{name}
-%{_libdir}/%{name}
-%{_datadir}/%{name}
 %attr(755,root,root) %{_bindir}/gpsimporter
 %attr(755,root,root) %{_bindir}/gridmaker
-%attr(755,root,root) %{_libdir}/libqgis.so.0.0.0
+%attr(755,root,root) %{_bindir}/qgis
+%attr(755,root,root) %{_libdir}/libqgis.so.*.*.*
+%{_libdir}/%{name}
+%{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/qgis-config
+%attr(755,root,root) %{_libdir}/libqgis.so
+%{_libdir}/libqgis.la
+%dir %{_includedir}/qgis
 %{_includedir}/qgis/qgis.h
 %{_includedir}/qgis/qgisapp.h
 %{_includedir}/qgis/qgisappbase.ui.h
@@ -160,8 +183,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/qgis/qgsvectorlayerproperties.h
 %{_includedir}/qgis/qgsvectorlayerpropertiesbase.uic.h
 %{_includedir}/qgis/splashscreen.h
-%{_prefix}/lib/libqgis.a
-%{_prefix}/lib/libqgis.la
 %{_aclocaldir}/qgis.m4
 
-%doc AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README TODO
+%package static
+%defattr(644,root,root,755)
+%{_libdir}/libqgis.a
