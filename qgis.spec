@@ -9,7 +9,10 @@ Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
 # Source0-md5:	f6ae20c4ae638f321bb3863783b6be3b
 Patch0:		%{name}-paralelbuild.patch
 URL:		http://qgis.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gdal-devel
+BuildRequires:	libtool
 BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
