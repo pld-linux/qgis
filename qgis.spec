@@ -1,12 +1,12 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
 Summary(pl):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
 Name:		qgis
-Version:	0.5.0
+Version:	0.6.0
 Release:	0.1
 License:	GPL
 Group:		Applications/Engineering
 Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
-# Source0-md5:	f6ae20c4ae638f321bb3863783b6be3b
+# Source0-md5:	ee3f94201837c5aef204e30250991295
 Patch0:		%{name}-paralelbuild.patch
 URL:		http://qgis.sourceforge.net/
 BuildRequires:	autoconf
@@ -90,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*.so
 %{_datadir}/%{name}
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
