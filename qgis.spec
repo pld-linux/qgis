@@ -1,12 +1,14 @@
+Summary:	Quantum GIS (QGIS) is designed to be a Geographic Information System (GIS) built for Linux/Unix.
 Name:		qgis
 Version:	0.3.0
 Release:	0
 License:	GPL
 Group:		Applications/Engineering
-Autoreqprov:	on
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
+# Source0-md5:	f1f12a5991a9bdf2389cc8892c7801cd
 URL:		http://qgis.sourceforge.net/
-Summary:	Quantum GIS (QGIS) is designed to be a Geographic Information System (GIS) built for Linux/Unix.
+BuildRequires: gdal-devel
+BuildRequires: qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define prefix /usr
@@ -17,34 +19,12 @@ Quantum GIS (QGIS) is designed to be a Geographic Information System
 raster formats. Currently QGIS supports shapefiles and
 PostgreSQL/PostGIS layers.
 
-Planned features include:
-
-    - Read and edit shapefiles
-    - Display georeferenced rasters (tiff, png, geotiff)
-    - Plugins to dynamically add new functionality to the application
-    - Support for database tables
-    - Support for spatially enabled tables in PostgreSQL using PostGIS
-    - Map output
-    - Script engine
-    - Metadata support
-
-Authors:
-- ---------- Carl Anderson Christoph Spoerri <spoerri at
-  users.sourceforge.net> Denis Antipov <rawbytes at
-  users.sourceforge.net> Gary E.Sherman <sherman at mrcc dot com> Jens
-  Oberender <j.obi at troja.net> Marco Hugentobler <mhugent at
-  users.sourceforge.net> Mark Coletti <mcoletti at
-  users.sourceforge.net> Masaru Hoshi Radim Blazek <blazek at itc.it>
-  Steve Halasz <stevehalasz at users.sourceforge.net>
-
 %prep
 %setup -q
 
 %build
-export CFLAGS="%{rpmcflags}"
-./configure --prefix=%{_prefix}
+%configure --with-qtdir=%{_prefix}
 %{__make}
-strip src/qgis
 
 
 %install
