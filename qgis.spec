@@ -1,20 +1,22 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
 Summary(pl):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
 Name:		qgis
-Version:	0.6.0
+Version:	0.7.0
 Release:	0.1
 License:	GPL
 Group:		Applications/Engineering
 Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
-# Source0-md5:	ee3f94201837c5aef204e30250991295
+# Source0-md5:	ffec37c0b4b2fff4bb689801b641eadb
 Patch0:		%{name}-paralelbuild.patch
 URL:		http://qgis.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gdal-devel
+BuildRequires:	geos-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
+BuildRequires:	sqlite3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,9 +88,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS BUGS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/gridmaker
 %attr(755,root,root) %{_bindir}/qgis
+%attr(755,root,root) %{_bindir}/qgis_help
+%attr(755,root,root) %{_bindir}/spit
 %attr(755,root,root) %{_libdir}/libqgis.so.*.*.*
 %dir %{_libdir}/%{name}
-%{_libdir}/%{name}/*.so
+%attr(755,root,root) %{_libdir}/%{name}/*.so
+%dir %{_libdir}/%{name}/designer
+%attr(755,root,root) %{_libdir}/%{name}/designer/*.so
 %{_datadir}/%{name}
 %{_mandir}/man1/*
 
@@ -97,9 +103,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/qgis-config
 %attr(755,root,root) %{_libdir}/libqgis.so
 %{_libdir}/libqgis.la
-%{_includedir}/qgis
+%{_libdir}/%{name}/*.la
+%{_libdir}/%{name}/designer/*.la
+%{_includedir}/%{name}
 %{_aclocaldir}/qgis.m4
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libqgis.a
+%{_libdir}/%{name}/*.a
+%{_libdir}/%{name}/designer/*.a
