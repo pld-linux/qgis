@@ -77,6 +77,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}{,/designer}/*.{la,a}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -103,13 +105,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/qgis-config
 %attr(755,root,root) %{_libdir}/libqgis.so
 %{_libdir}/libqgis.la
-%{_libdir}/%{name}/*.la
-%{_libdir}/%{name}/designer/*.la
 %{_includedir}/%{name}
 %{_aclocaldir}/qgis.m4
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libqgis.a
-%{_libdir}/%{name}/*.a
-%{_libdir}/%{name}/designer/*.a
