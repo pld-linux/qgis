@@ -1,5 +1,5 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
-Summary(pl):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
+Summary(pl.UTF-8):   Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/UniksÃ³w
 Name:		qgis
 Version:	0.7.0
 Release:	0.1
@@ -25,35 +25,35 @@ Quantum GIS (QGIS) is designed to be a Geographic Information System
 raster formats. Currently QGIS supports shapefiles and
 PostgreSQL/PostGIS layers.
 
-%description -l pl
-Quantum GIS (QGIS) jest projektowany by byæ systemem informacji
+%description -l pl.UTF-8
+Quantum GIS (QGIS) jest projektowany by byÄ‡ systemem informacji
 geograficznych (GIS - Geographic Information System) stworzonym dla
-Linuksa/Uniksów. QGIS bêdzie oferowa³ obs³ugê formatów wektorowych i
-rastrowych. Aktualnie QGIS obs³uguje pliki kszta³tów oraz warstwy
+Linuksa/UniksÃ³w. QGIS bÄ™dzie oferowaÅ‚ obsÅ‚ugÄ™ formatÃ³w wektorowych i
+rastrowych. Aktualnie QGIS obsÅ‚uguje pliki ksztaÅ‚tÃ³w oraz warstwy
 PostgreSQL/PostGIS.
 
 %package devel
 Summary:	Header files for QGIS
-Summary(pl):	Pliki nag³ówkowe QGIS
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe QGIS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for QGIS.
 
-%description devel -l pl
-Pliki nag³ówkowe QGIS.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe QGIS.
 
 %package static
 Summary:	Static QGIS library
-Summary(pl):	Statyczna biblioteka QGIS
+Summary(pl.UTF-8):   Statyczna biblioteka QGIS
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static QGIS library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka QGIS.
 
 %prep
