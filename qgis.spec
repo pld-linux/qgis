@@ -1,5 +1,5 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
-Summary(pl.UTF-8):   Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
+Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
 Name:		qgis
 Version:	0.7.0
 Release:	0.1
@@ -34,7 +34,7 @@ PostgreSQL/PostGIS.
 
 %package devel
 Summary:	Header files for QGIS
-Summary(pl.UTF-8):   Pliki nagłówkowe QGIS
+Summary(pl.UTF-8):	Pliki nagłówkowe QGIS
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -46,7 +46,7 @@ Pliki nagłówkowe QGIS.
 
 %package static
 Summary:	Static QGIS library
-Summary(pl.UTF-8):   Statyczna biblioteka QGIS
+Summary(pl.UTF-8):	Statyczna biblioteka QGIS
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
