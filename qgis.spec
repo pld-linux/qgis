@@ -1,21 +1,45 @@
-Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS) built for Linux/Unix
-Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS) dla Linuksa/Uniksów
+Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
+Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
-Version:	0.7.0
+Version:	2.14.2
 Release:	0.1
-License:	GPL
+License:	GPL v2+
 Group:		Applications/Engineering
-Source0:	http://dl.sourceforge.net/qgis/%{name}-%{version}.tar.gz
-# Source0-md5:	ffec37c0b4b2fff4bb689801b641eadb
-Patch0:		%{name}-paralelbuild.patch
+Source0:	http://qgis.org/downloads/%{name}-%{version}.tar.bz2
+# Source0-md5:	be8427d171adb07f454e9f3eea349dea
+#Patch0:		%{name}-paralelbuild.patch
 URL:		http://qgis.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gdal-devel
-BuildRequires:	geos-devel >= 2.0.0
-BuildRequires:	libtool
-BuildRequires:	qt-devel
-BuildRequires:	qt-linguist
+BuildRequires:	QtGui-devel
+BuildRequires:	QtNetwork-devel
+BuildRequires:	QtSql-devel
+BuildRequires:	QtSvg-devel
+BuildRequires:	QtWebKit-devel
+BuildRequires:	QtXml-devel
+BuildRequires:	QtXmlPatterns-devel
+BuildRequires:	bison >= 2.4
+BuildRequires:	cmake >= 2.8.6
+BuildRequires:	expat-devel >= 1.95
+BuildRequires:	flex >= 2.5.6
+BuildRequires:	gdal-devel >= 1.4.0
+BuildRequires:	geos-devel >= 3.4.0
+BuildRequires:	grass-devel >= 6.0.0
+BuildRequires:	gsl-devel >= 1.8
+BuildRequires:	libspatialite-devel
+BuildRequires:	postgresql-devel >= 8.0.0
+BuildRequires:	proj-devel >= 4.4.0
+BuildRequires:	python-PyQt4-devel-tools >= 4.8.3
+BuildRequires:	python-PyQt4-uic	 >= 4.8.3
+BuildRequires:	python-PyQt4-qscintilla2
+BuildRequires:	python-devel >= 2.7
+BuildRequires:	python-sip-devel >= 4.12
+BuildRequires:	qca-devel
+BuildRequires:	qscintilla2-qt4-devel
+BuildRequires:	qt4-build
+BuildRequires:	qt4-qmake
+BuildRequires:	qwt-devel >= 5.0.0
+BuildConflicts:	qwt-devel >= 6.1.0
+# ...or -DWITH_QWTPOLAR=OFF
+BuildRequires:	spatialindex-devel
 BuildRequires:	sqlite3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,7 +82,7 @@ Statyczna biblioteka QGIS.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
 %{__libtoolize}
