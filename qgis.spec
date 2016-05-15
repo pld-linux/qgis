@@ -13,6 +13,7 @@ BuildRequires:	QtGui-devel
 BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSql-devel
 BuildRequires:	QtSvg-devel
+BuildRequires:	QtUiTools-devel
 BuildRequires:	QtWebKit-devel
 BuildRequires:	QtXml-devel
 BuildRequires:	QtXmlPatterns-devel
@@ -35,6 +36,7 @@ BuildRequires:	python-sip-devel >= 4.12
 BuildRequires:	qca-devel
 BuildRequires:	qscintilla2-qt4-devel
 BuildRequires:	qt4-build
+BuildRequires:	qt4-linguist
 BuildRequires:	qt4-qmake
 BuildRequires:	qwt-devel >= 5.0.0
 BuildConflicts:	qwt-devel >= 6.1.0
