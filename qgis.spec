@@ -1,18 +1,19 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
 Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
-Version:	2.14.2
+Version:	2.18.9
 Release:	0.1
 License:	GPL v2+
 Group:		Applications/Engineering
 Source0:	http://qgis.org/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	be8427d171adb07f454e9f3eea349dea
+# Source0-md5:	d55d4931651d1967876ba89aab8d2935
 #Patch0:		%{name}-paralelbuild.patch
-URL:		http://qgis.sourceforge.net/
+URL:		http://qgis.org/
 BuildRequires:	QtGui-devel
 BuildRequires:	QtNetwork-devel
 BuildRequires:	QtSql-devel
 BuildRequires:	QtSvg-devel
+#BuildRequires:	QtTest-devel
 BuildRequires:	QtUiTools-devel
 BuildRequires:	QtWebKit-devel
 BuildRequires:	QtXml-devel
@@ -23,7 +24,7 @@ BuildRequires:	expat-devel >= 1.95
 BuildRequires:	flex >= 2.5.6
 BuildRequires:	gdal-devel >= 1.4.0
 BuildRequires:	geos-devel >= 3.4.0
-BuildRequires:	grass-devel >= 6.0.0
+#BuildRequires:	grass-devel >= 6.0.0
 BuildRequires:	gsl-devel >= 1.8
 BuildRequires:	libspatialite-devel
 BuildRequires:	postgresql-devel >= 8.0.0
@@ -34,12 +35,13 @@ BuildRequires:	python-PyQt4-qscintilla2
 BuildRequires:	python-devel >= 2.7
 BuildRequires:	python-sip-devel >= 4.12
 BuildRequires:	qca-devel
-BuildRequires:	qscintilla2-qt4-devel
+BuildRequires:	qjson-devel
 BuildRequires:	qt4-build
 BuildRequires:	qt4-linguist
 BuildRequires:	qt4-qmake
 BuildRequires:	qwt-devel >= 5.0.0
 BuildConflicts:	qwt-devel >= 6.1.0
+BuildRequires:	sip-PyQt4-qscintilla2
 # ...or -DWITH_QWTPOLAR=OFF
 BuildRequires:	spatialindex-devel
 BuildRequires:	sqlite3-devel
@@ -87,15 +89,10 @@ Statyczna biblioteka QGIS.
 #%patch0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+%cmake . \
+	-DENABLE_TESTS=FALSE
 
-%configure \
-	--with-qtdir=%{_prefix}
 %{__make}
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
