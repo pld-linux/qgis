@@ -93,8 +93,8 @@ Statyczna biblioteka QGIS.
 
 %build
 %cmake . \
-	-D GRASS_INCLUDE_DIR7=%{_includedir}/grass72 \
-	-D ENABLE_TESTS:BOOL=FALSE
+	-DGRASS_INCLUDE_DIR7=%{_includedir}/grass72 \
+	-DENABLE_TESTS:BOOL=FALSE
 # TODO: rpm/qgis.spec.template
 
 %{__make}
