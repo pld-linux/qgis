@@ -1,4 +1,4 @@
-# TODO: grass, python and server subpackages
+# TODO: python and server subpackages
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
 Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
@@ -75,17 +75,14 @@ Header files for QGIS.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe QGIS.
 
-%package static
-Summary:	Static QGIS library
-Summary(pl.UTF-8):	Statyczna biblioteka QGIS
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+%package grass
+Summary:	GRASS support for QGIS
+Summary(pl.UTF-8):	Wsparcie GRASS dla QGIS-a
+Group:		Applications/Engineering
+Suggests:	grass
 
-%description static
-Static QGIS library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka QGIS.
+%description grass
+GRASS plugin for QGIS required to interface with the GRASS system.
 
 %prep
 %setup -q
@@ -94,6 +91,7 @@ Statyczna biblioteka QGIS.
 %build
 %cmake . \
 	-DGRASS_INCLUDE_DIR7=%{_includedir}/grass72 \
+	-DQGIS_MANUAL_SUBDIR=/share/man \
 	-DENABLE_TESTS:BOOL=FALSE
 # TODO: rpm/qgis.spec.template
 
@@ -130,6 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_libdir}/libqgisgrass*.so.*.*.*
 %exclude %{_libdir}/libqgispython.so.*.*.*
 %{_datadir}/%{name}
+%exclude %{_datadir}/%{name}/grass
 %exclude %{_datadir}/%{name}/python
 %{_desktopdir}/q*.desktop
 %{_pixmapsdir}/q*.png
@@ -141,6 +140,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqgis*.so
 %{_includedir}/%{name}
 
-%files static
+%files grass
 %defattr(644,root,root,755)
-#%{_libdir}/libqgis.a
+%{_libdir}/%{name}/grass
+%attr(755,root,root) %{_libdir}/%{name}/plugins/libgrass*.so
+%attr(755,root,root) %{_libdir}/libqgisgrass*.so.*.*.*
+%{_datadir}/%{name}/grass
