@@ -1,13 +1,15 @@
+# TODO: grass, python and server subpackages
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
 Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
 Version:	2.18.9
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Applications/Engineering
 Source0:	http://qgis.org/downloads/%{name}-%{version}.tar.bz2
 # Source0-md5:	d55d4931651d1967876ba89aab8d2935
-#Patch0:		%{name}-paralelbuild.patch
+# 1st chunk of https://daniele.vigano.me/git/dani/copr-dani-qgis/raw/25b8f81ccabbfdb183d4850a66e884c183444f14/qgis_sip-ftbfs.patch
+Patch0:		%{name}_sip-ftbfs.patch
 URL:		http://qgis.org/
 BuildRequires:	QtGui-devel
 BuildRequires:	QtNetwork-devel
@@ -24,7 +26,7 @@ BuildRequires:	expat-devel >= 1.95
 BuildRequires:	flex >= 2.5.6
 BuildRequires:	gdal-devel >= 1.4.0
 BuildRequires:	geos-devel >= 3.4.0
-#BuildRequires:	grass-devel >= 6.0.0
+BuildRequires:	grass-devel >= 6.0.0
 BuildRequires:	gsl-devel >= 1.8
 BuildRequires:	libspatialite-devel
 BuildRequires:	postgresql-devel >= 8.0.0
@@ -38,13 +40,14 @@ BuildRequires:	qca-devel
 BuildRequires:	qjson-devel
 BuildRequires:	qt4-build
 BuildRequires:	qt4-linguist
-BuildRequires:	qt4-qmake
+BuildRequires:	qt4-qmake >= 4.8.0
 BuildRequires:	qwt-devel >= 5.0.0
 BuildConflicts:	qwt-devel >= 6.1.0
-BuildRequires:	sip-PyQt4-qscintilla2
 # ...or -DWITH_QWTPOLAR=OFF
+BuildRequires:	sip-PyQt4-qscintilla2
 BuildRequires:	spatialindex-devel
 BuildRequires:	sqlite3-devel
+Suggests:	gpsbabel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,21 +89,28 @@ Statyczna biblioteka QGIS.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 
 %build
 %cmake . \
-	-DENABLE_TESTS=FALSE
+	-D GRASS_INCLUDE_DIR7=%{_includedir}/grass72 \
+	-D ENABLE_TESTS:BOOL=FALSE
+# TODO: rpm/qgis.spec.template
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_datadir}/mime/packages}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}{,/designer}/*.{la,a}
+install -p debian/q*.desktop $RPM_BUILD_ROOT%{_desktopdir}
+install -p debian/q*.png $RPM_BUILD_ROOT%{_pixmapsdir}
+install -p debian/qgis.xml $RPM_BUILD_ROOT%{_datadir}/mime/packages
+
+# %find_lang %{name} --with-qm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,27 +120,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog README TODO
-%attr(755,root,root) %{_bindir}/gridmaker
+%doc BUGS CONTRIBUTE.md ChangeLog Exception_to_GPL_for_Qt.txt NEWS README.md
+%attr(755,root,root) %{_bindir}/qbrowser
 %attr(755,root,root) %{_bindir}/qgis
-%attr(755,root,root) %{_bindir}/qgis_help
-%attr(755,root,root) %{_bindir}/spit
-%attr(755,root,root) %{_libdir}/libqgis.so.*.*.*
-%dir %{_libdir}/%{name}
-%attr(755,root,root) %{_libdir}/%{name}/*.so
-%dir %{_libdir}/%{name}/designer
-%attr(755,root,root) %{_libdir}/%{name}/designer/*.so
+%attr(755,root,root) %{_libdir}/libqgis*.so.*.*.*
+%{_libdir}/%{name}
+%exclude %{_libdir}/%{name}/grass
+%exclude %{_libdir}/%{name}/plugins/libgrass*.so
+%exclude %{_libdir}/libqgisgrass*.so.*.*.*
+%exclude %{_libdir}/libqgispython.so.*.*.*
 %{_datadir}/%{name}
-%{_mandir}/man1/*
+%exclude %{_datadir}/%{name}/python
+%{_desktopdir}/q*.desktop
+%{_pixmapsdir}/q*.png
+%{_datadir}/mime/packages/%{name}.xml
+%{_mandir}/man1/q*.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/qgis-config
-%attr(755,root,root) %{_libdir}/libqgis.so
-%{_libdir}/libqgis.la
+%attr(755,root,root) %{_libdir}/libqgis*.so
 %{_includedir}/%{name}
-%{_aclocaldir}/qgis.m4
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libqgis.a
+#%{_libdir}/libqgis.a
