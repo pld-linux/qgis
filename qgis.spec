@@ -122,8 +122,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/qbrowser
 %attr(755,root,root) %{_bindir}/qgis
 %attr(755,root,root) %{_libdir}/libqgis*.so.*.*.*
-%{_libdir}/%{name}
-%exclude %{_libdir}/%{name}/grass
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
+%attr(755,root,root) %{_libdir}/%{name}/crssync
+%attr(755,root,root) %{_libdir}/%{name}/qgis_help
+%attr(755,root,root) %{_libdir}/%{name}/plugins/lib*.so
 %exclude %{_libdir}/%{name}/plugins/libgrass*.so
 %exclude %{_libdir}/libqgisgrass*.so.*.*.*
 %exclude %{_libdir}/libqgispython.so.*.*.*
