@@ -2,12 +2,12 @@
 Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
 Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
-Version:	2.18.9
-Release:	2
+Version:	2.18.17
+Release:	1
 License:	GPL v2+
 Group:		Applications/Engineering
 Source0:	http://qgis.org/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	d55d4931651d1967876ba89aab8d2935
+# Source0-md5:	d3b23c76a84a8d050aa5f5e58c762347
 # 1st chunk of https://daniele.vigano.me/git/dani/copr-dani-qgis/raw/25b8f81ccabbfdb183d4850a66e884c183444f14/qgis_sip-ftbfs.patch
 Patch0:		%{name}_sip-ftbfs.patch
 URL:		http://qgis.org/
@@ -26,7 +26,7 @@ BuildRequires:	expat-devel >= 1.95
 BuildRequires:	flex >= 2.5.6
 BuildRequires:	gdal-devel >= 1.4.0
 BuildRequires:	geos-devel >= 3.4.0
-BuildRequires:	grass-devel >= 6.0.0
+BuildRequires:	grass-devel >= 7.4.0
 BuildRequires:	gsl-devel >= 1.8
 BuildRequires:	libspatialite-devel
 BuildRequires:	postgresql-devel >= 8.0.0
@@ -90,7 +90,7 @@ GRASS plugin for QGIS required to interface with the GRASS system.
 
 %build
 %cmake . \
-	-DGRASS_INCLUDE_DIR7=%{_includedir}/grass72 \
+	-DGRASS_INCLUDE_DIR7=%{_includedir}/grass74 \
 	-DQGIS_MANUAL_SUBDIR=/share/man \
 	-DENABLE_TESTS:BOOL=FALSE
 # TODO: rpm/qgis.spec.template
