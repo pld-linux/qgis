@@ -3,7 +3,7 @@ Summary:	Quantum GIS (QGIS) - a Geographic Information System (GIS)
 Summary(pl.UTF-8):	Quantum GIS (QGIS) - system informacji geograficznych (GIS)
 Name:		qgis
 Version:	2.18.17
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Engineering
 Source0:	http://qgis.org/downloads/%{name}-%{version}.tar.bz2
